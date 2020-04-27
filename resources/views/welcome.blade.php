@@ -14,7 +14,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-image: url("img/wifi.jpg"); 
+                background-image: url("img/wifi.jpg");
                 background-size: 1450px 850px;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -84,13 +84,14 @@
                     <ul class="navbar-nav ml-auto">
 
 
-            
+
             @if (Route::has('login'))
-                
+
                     @auth
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/home') }}">Home</a>
                         </li>
+
                     @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -102,10 +103,9 @@
                         </li>
                         @endif
                     @endauth
-                
-            @endif
 
-            </li>
+            @endif
+            </ul>
         </div>
     </body>
 </html>
