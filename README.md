@@ -37,7 +37,7 @@ Criar database pelo terminal:
 
 Configurar parâmetros da base de dados (DB_DATABASE, DB_USERNAME e  DB_PASSWORD) no ficheiro .env
 
-## Comandos necessários:
+## Comandos 
 
 - composer update   
 - php artisan migrate:fresh
