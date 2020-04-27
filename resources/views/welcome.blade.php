@@ -14,8 +14,8 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-image: url("img/wifi.jpg");
-                background-size: 1450px 850px;
+                background-image: url("img/wifii.jpg");
+                background-size: 1450px 800px;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
