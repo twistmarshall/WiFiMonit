@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Pagina do Utilizador</div>
+                <div class="card-header">Painel do Administrador</div>
                 <div class="card-body">
-                    You are normal user.
+                    You are Admin.
                 </div>
             </div>
         </div>
