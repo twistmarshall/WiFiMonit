@@ -56,26 +56,18 @@ class UserController extends Controller
                  'name'          => 'required|regex:/^[\pL\s]+$/u',
                  'email'         => 'required|string|email|max:255|unique:users',
                  'phone'         => 'nullable|regex:/^[0-9+\s]+$/',
-                 'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg'
              ]);
          } else {
              $request->validate([
                  'name'          => 'required|regex:/^[\pL\s]+$/u',
                  'phone'         => 'nullable|regex:/^[0-9+\s]+$/',
-                 'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg'
              ]);
 
          }
-         $user->fill($request->all()); //no fim vai acabar por inserir a foto
+         $user->fill($request->all());
 
-         //só depois é que mete a foto
-         if ($request->hasFile('profile_photo')) {
-             if($request->file('profile_photo')->isValid()) {
-                 Storage::disk('public')->putFile('profiles', $request->file('profile_photo'));
-                 $imgName = $request->profile_photo->hashName();
-                 $user->profile_photo = $imgName;
-             }
-         }
+
+
 
 
          $user->save();

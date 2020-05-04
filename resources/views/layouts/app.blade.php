@@ -72,10 +72,7 @@
                                     </form>
                                 </div>
                             </li>
-                            <li>
-                                <img src="{{ Storage::url('public/profiles/' . Auth::user()->profile_photo)}}" height="42" width="42"
-                                     style="border-radius: 100px;">
-                            </li>
+                            
                         @endguest
                     </ul>
                 </div>
