@@ -56,16 +56,25 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                  <!-- profile button -->
+                                  <a class="dropdown-item" href="{{route('users.showProfille' )}}">
+                                      {{ __('Perfil ') }}
+                                  </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Terminar Sessão') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
+                            </li>
+                            <li>
+                                <img src="{{ Storage::url('public/profiles/' . Auth::user()->profile_photo)}}" height="42" width="42"
+                                     style="border-radius: 100px;">
                             </li>
                         @endguest
                     </ul>

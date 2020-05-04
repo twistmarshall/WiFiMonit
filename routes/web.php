@@ -22,3 +22,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
+
+Route::get('/me', 'UserController@showProfile')->name('users.showProfille');
+Route::put('/me/profile', 'UserController@changeUserProfile')->name('user.view.change.profile');
+Route::get('/me/changePassword', 'UserController@changeUserPasswordView')->name('user.view.change.password');
