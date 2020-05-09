@@ -38,7 +38,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto  ">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -76,7 +76,7 @@
                           @if (Auth::user()->foto != null)
                           <li>
                               <img src="{{ asset('storage/fotos/' . Auth::user()->foto)}}" height="42" width="42"
-                                   style="border-radius: 100px;">
+                                   style="border-radius: 100px; margin-left: 20px ">
                           </li>
                           @endif
                         @endguest
