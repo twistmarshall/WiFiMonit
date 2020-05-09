@@ -57,7 +57,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                   <!-- profile button -->
-                                  <a class="dropdown-item" href="{{route('users.showProfille' )}}">
+                                  <a class="dropdown-item" href="{{route('users.showProfile' )}}">
                                       {{ __('Perfil ') }}
                                   </a>
 
@@ -72,7 +72,13 @@
                                     </form>
                                 </div>
                             </li>
-                            
+                          </li>
+                          @if (Auth::user()->foto != null)
+                          <li>
+                              <img src="{{ asset('storage/fotos/' . Auth::user()->foto)}}" height="42" width="42"
+                                   style="border-radius: 100px;">
+                          </li>
+                          @endif
                         @endguest
                     </ul>
                 </div>

@@ -67,35 +67,37 @@
                         </div>
 
                         <!-- phone number -->
-                            <div class="form-group row">
-                                <label for="phone-number" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number (optional)') }}</label>
+                                                <div class="form-group row">
+                                                        <label for="phone-number" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number (optional)') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="phone" type="text" class="form-control" name="phone">
+                                                        <div class="col-md-6">
+                                                            <input id="phone" type="text" class="form-control" name="phone">
 
-                                    @if ($errors->has('phone'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('phone') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
+                                                            @if ($errors->has('phone'))
+                                                                <span class="invalid-feedback">
+                                                                <strong>{{ $errors->first('phone') }}</strong>
+                                                            </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
 
-                            <!-- photo -->
-                            <div class="form-group row">
-                                <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Profile Photo (optional)') }}</label>
-                                <div  class="col-md-6">
-                                    <input id="profile_photo" type="file" class="custom-file-input" name="profile_photo">
-                                    <label class="custom-file-label" for="profile_photo"
-                                           class="col-md-3 col-form-label text-md-right">Browse</label>
+                                                    <!-- photo -->
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Profile Photo (optional)') }}</label>
+                                                        <div  class="col-md-6">
+                                                            <input id="profile-photo" type="file" class="custom-file-input" name="profile-photo">
+                                                            <label class="custom-file-label" for="profile-photo"
+                                                                   class="col-md-3 col-form-label text-md-right">Browse</label>
 
-                                    @if ($errors->has('profile_photo'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('profile_photo') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
+                                                            @if ($errors->has('profile-photo'))
+                                                                <span class="invalid-feedback">
+                                                                <strong>{{ $errors->first('profile-photo') }}</strong>
+                                                            </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

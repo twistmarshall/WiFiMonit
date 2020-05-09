@@ -11,68 +11,74 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-  public function showProfile()
-     {
-         return view('users.userProfile');
-     }
 
-     public function changeUserPasswordView()
-     {
-         return view('auth.passwords.changePasswordView');
-     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-     public function changeUserPassword(Request $request)
-     {
+     public function showProfile()
+      {
+          $user = Auth::user();
+          return view('users.userProfile', compact('user'));
+      }
 
-         $request->validate([
-             'old_password' => 'required|string|min:3',
-             'password' => 'required|string|min:3|confirmed|different:old_password',
-         ]);
+      public function changeUserPasswordView()
+      {
+          return view('auth.passwords.changePassword');
+      }
 
-         $user = User::findOrFail(Auth::id());
+      public function changeUserPassword(Request $request)
+      {
 
-         if (Hash::check($request->old_password, $user->password)) {
-             $user->password = Hash::make($request->password);
-             $user->save();
-         } else {
-             return redirect()->back()->withErrors(array("old_password" => "old password errada"));
-         }
+          $request->validate([
+              'old_password' => 'required|string|min:3',
+              'password' => 'required|string|min:3|confirmed|different:old_password',
+          ]);
 
-         return view('users.userProfile')->with('success');
-     }
+          $user = User::findOrFail(Auth::id());
 
-     public function changeUserProfile(Request $request)
-     {
+          if (Hash::check($request->old_password, $user->password)) {
+              $user->password = Hash::make($request->password);
+              $user->save();
+          } else {
+              return redirect()->back()->withErrors(array("old_password" => "old password errada"));
+          }
 
-         $userId = Auth::id();
-         $user = User::findOrFail($userId);
-
-         if (!$request->has('phone')) {
-             $request->request->add(['phone' => null]);   //caso não exista põe phone a null
-         }
-
-         if ($request->email !== $user->email) { //=== para verificar se tem mesmo tipo
-             $request->validate([
-                 'name'          => 'required|regex:/^[\pL\s]+$/u',
-                 'email'         => 'required|string|email|max:255|unique:users',
-                 'phone'         => 'nullable|regex:/^[0-9+\s]+$/',
-             ]);
-         } else {
-             $request->validate([
-                 'name'          => 'required|regex:/^[\pL\s]+$/u',
-                 'phone'         => 'nullable|regex:/^[0-9+\s]+$/',
-             ]);
-
-         }
-         $user->fill($request->all());
+          return view('users.userProfile')->with('success');
+      }
 
 
+      public function changeUserProfile(Request $request){
+        $user = Auth::user();
+
+        $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email'         => 'required|string|email|max:255|unique:users,email,'.$user->id,
+        'telefone'         => 'nullable|regex:/^[0-9+\s]+$/',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg'
+        ]);
+
+
+        $user->fill($request->all());
+
+
+        if($user->foto != null && Hash::check($request->file('foto'), $user->foto)){
+            Storage::delete("public/fotos/{$user->foto}");
+        }
+
+        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+            $foto = $request->file('foto')->hashName();
+            $request->file('foto')->store('fotos', 'public');
+            $user->foto = $foto;
+        }
+
+        $user->save();
 
 
 
-         $user->save();
+        return view('users.userProfile')->with('success', 'Profile saved successfully.');
+    }
 
-         return view('users.userProfile')->with('success');
 
-     }
-  }
+}

@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
-Route::get('/me', 'UserController@showProfile')->name('users.showProfille');
-Route::put('/me/profile', 'UserController@changeUserProfile')->name('user.view.change.profile');
-Route::get('/me/changePassword', 'UserController@changeUserPasswordView')->name('user.view.change.password');
+Route::get('/user', 'UserController@showProfile')->name('users.showProfile');
+Route::put('/user/profile', 'UserController@changeUserProfile')->name('user.view.change.profile');
+Route::get('/user/changepassword', 'UserController@changeUserPasswordView')->name('user.view.change.password');
+Route::patch('/user/password', 'UserController@changeUserPassword')->name('users.changePassword');
